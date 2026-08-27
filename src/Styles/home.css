@@ -220,7 +220,7 @@
 .inf-main-title {
     font-family: "Poppins", sans-serif;
     /* tamano fluido: se achica solo para que quepa @colegiopedagogicocrear entero */
-    font-size: clamp(1.05rem, 6.2vw, 1.7rem);
+    font-size: clamp(0.7rem, 4.5vw, 1.3rem);
     font-weight: 900;
     background: linear-gradient(120deg, var(--school-blue), var(--school-purple), var(--school-pink));
     -webkit-background-clip: text;
