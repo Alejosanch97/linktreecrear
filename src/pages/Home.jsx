@@ -1,48 +1,48 @@
 import { useState, useEffect } from "react";
-import { 
-    GraduationCap, 
-    Globe, 
-    MessageCircle, 
-    Play, 
-    Briefcase, 
-    Camera, 
-    Video, 
-    ArrowRight 
+import {
+    GraduationCap,
+    Globe,
+    MessageCircle,
+    Play,
+    Briefcase,
+    Camera,
+    Video,
+    ArrowRight
 } from "lucide-react";
 import "../Styles/home.css";
 import logoUrl from "../assets/img/escudo.jpg";
 
 const LINKS = [
-    { 
-        label: "Admisiones 2027", 
-        sublabel: "¡Forma parte de nuestra familia!", 
-        url: "https://www.pedagogicocrear.edu.co/admisiones-2027.html", 
-        icon: GraduationCap, 
-        highlight: true 
+    {
+        label: "Admisiones 2027",
+        sublabel: "¡Forma parte de nuestra familia!",
+        url: "https://www.pedagogicocrear.edu.co/admisiones-2027.html",
+        icon: GraduationCap,
+        highlight: true
     },
-    { 
-        label: "Sitio Web Oficial", 
-        sublabel: "www.pedagogicocrear.edu.co", 
-        url: "https://www.pedagogicocrear.edu.co/", 
-        icon: Globe 
+    {
+        label: "Sitio Web Oficial",
+        sublabel: "www.pedagogicocrear.edu.co",
+        url: "https://www.pedagogicocrear.edu.co/",
+        icon: Globe
     },
-    { 
-        label: "Chatea con nosotros", 
-        sublabel: "Atención directa vía WhatsApp", 
-        url: "https://wa.me/573118537912", 
-        icon: MessageCircle 
+    {
+        label: "Chatea con nosotros",
+        sublabel: "Atención directa vía WhatsApp",
+        url: "https://wa.me/573118537912",
+        icon: MessageCircle
     },
-    { 
-        label: "Canal de YouTube", 
-        sublabel: "Nuestros eventos y videos", 
-        url: "https://www.youtube.com/channel/UC33y4DbY4kGPuzEDv_dXlVA", 
-        icon: Play 
+    {
+        label: "Canal de YouTube",
+        sublabel: "Nuestros eventos y videos",
+        url: "https://www.youtube.com/channel/UC33y4DbY4kGPuzEDv_dXlVA",
+        icon: Play
     },
-    { 
-        label: "Portafolio Educativo", 
-        sublabel: "Conoce nuestra propuesta", 
-        url: "https://drive.google.com/file/d/1AU6Y5ZcxPTFHJmlhMyX8IyaDLEDPpGYt/view", 
-        icon: Briefcase 
+    {
+        label: "Portafolio Educativo",
+        sublabel: "Conoce nuestra propuesta",
+        url: "https://drive.google.com/file/d/1AU6Y5ZcxPTFHJmlhMyX8IyaDLEDPpGYt/view",
+        icon: Briefcase
     },
 ];
 
@@ -99,6 +99,40 @@ export const Home = () => {
                     </p>
                 </div>
 
+                {/* Mini Reproductor de YouTube Integrado */}
+                <div className="video-container" style={{
+                    position: 'relative',
+                    width: '100%',
+                    paddingBottom: '56.25%',
+                    height: 0,
+                    marginBottom: '24px',
+                    borderRadius: '16px',
+                    overflow: 'hidden',
+                    boxShadow: '0 8px 20px -4px rgba(30, 58, 138, 0.1)',
+                    border: '1px solid #e2e8f0',
+                    background: '#000'
+                }}>
+                    <video
+                        src="https://res.cloudinary.com/uykul1p9/video/upload/v1787850456/videoplayback.mp4"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        controls
+                        style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                            border: 0
+                        }}
+                    >
+                        Tu navegador no soporta la reproducción de videos.
+                    </video>
+                </div>
+
                 <div className="inf-links">
                     {LINKS.map((l, i) => {
                         const IconComponent = l.icon;
@@ -146,7 +180,7 @@ export const Home = () => {
                     })}
                 </div>
 
-                <p className="inf-foot">© {new Date().getFullYear()} · Colegio Pedagógico CREAR · ¡Juntos transformamos la educación!</p>
+                <p className="inf-foot">© 2027 · Colegio Pedagógico CREAR · ¡Juntos transformamos la educación!</p>
             </main>
         </div>
     );
