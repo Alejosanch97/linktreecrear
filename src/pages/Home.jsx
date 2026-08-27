@@ -70,10 +70,10 @@ export const Home = () => {
 
             {/* Decoraciones animadas infantiles flotantes de fondo */}
             <div className="inf-floating-shapes">
-                <span className="shape s1">⭐</span>
+                <span className="shape s1">🌟</span>
                 <span className="shape s2">🎨</span>
-                <span className="shape s3">📚</span>
-                <span className="shape s4">✏️</span>
+                <span className="shape s3">🚀</span>
+                <span className="shape s4">🎈</span>
             </div>
 
             <main className="inf-card school-theme">
