@@ -27,31 +27,45 @@
     overflow: hidden;
 }
 
-/* Blobs de color que respiran en el fondo */
+/* Blobs de color GRANDES que respiran en el fondo */
 .inf-wrap::before,
 .inf-wrap::after {
     content: "";
     position: absolute;
     border-radius: 50%;
-    filter: blur(60px);
+    filter: blur(110px);
     z-index: 0;
-    animation: blobFloat 14s ease-in-out infinite;
+    animation: blobFloat 16s ease-in-out infinite;
 }
 .inf-wrap::before {
-    width: 380px; height: 380px;
-    background: radial-gradient(circle, rgba(245,158,11,.45), transparent 70%);
-    top: -80px; left: -80px;
+    width: 620px; height: 620px;
+    background: radial-gradient(circle, rgba(245,158,11,.55), transparent 70%);
+    top: -180px; left: -160px;
 }
 .inf-wrap::after {
-    width: 420px; height: 420px;
-    background: radial-gradient(circle, rgba(124,58,237,.35), transparent 70%);
-    bottom: -100px; right: -100px;
-    animation-delay: 5s;
+    width: 680px; height: 680px;
+    background: radial-gradient(circle, rgba(124,58,237,.45), transparent 70%);
+    bottom: -220px; right: -180px;
+    animation-delay: 6s;
+}
+/* Tercer blob central rosa para mas profundidad de color */
+.inf-floating-shapes::before {
+    content: "";
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(236,72,153,.35), transparent 70%);
+    filter: blur(120px);
+    top: 30%; left: 50%;
+    transform: translateX(-50%);
+    z-index: 0;
+    animation: blobFloat 18s ease-in-out infinite;
+    animation-delay: 3s;
 }
 @keyframes blobFloat {
     0%,100% { transform: translate(0,0) scale(1); }
-    33% { transform: translate(40px,30px) scale(1.15); }
-    66% { transform: translate(-30px,20px) scale(.9); }
+    33% { transform: translate(60px,40px) scale(1.2); }
+    66% { transform: translate(-40px,30px) scale(.85); }
 }
 
 /* ============ FORMAS FLOTANTES ============ */
@@ -68,6 +82,7 @@
     opacity: .5;
     animation: floatShape 7s ease-in-out infinite;
     filter: drop-shadow(0 4px 8px rgba(0,0,0,.08));
+    z-index: 2;
 }
 .shape.s1 { top: 8%;  left: 6%; }
 .shape.s2 { top: 82%; left: 8%;  animation-delay: 2s; }
@@ -86,15 +101,16 @@
     max-width: 480px;
     text-align: center;
     color: var(--school-text-main);
-    background: rgba(255,255,255,.75);
+    background: rgba(255,255,255,.78);
     backdrop-filter: blur(22px);
     border: 2px solid rgba(255,255,255,.9);
     border-radius: 34px;
-    padding: 36px 24px 28px;
+    padding: 36px 22px 28px;
     box-shadow:
         0 24px 60px -20px rgba(124,58,237,.28),
         0 8px 24px -12px rgba(245,158,11,.25);
     animation: cardIn .8s cubic-bezier(.16,1,.3,1) both;
+    overflow: hidden;
 }
 @keyframes cardIn {
     from { opacity: 0; transform: translateY(30px) scale(.96); }
@@ -117,6 +133,7 @@
     transform: translateX(-50%);
     z-index: 10;
     animation: badgeBob 2.6s ease-in-out infinite;
+    max-width: 90%;
 }
 @keyframes badgeBob {
     0%,100% { transform: translateX(-50%) translateY(0); }
@@ -131,7 +148,7 @@
     background-size: 200% 200%;
     padding: 6px 16px;
     border-radius: 20px;
-    font-size: .65rem;
+    font-size: .62rem;
     font-weight: 700;
     color: #fff;
     white-space: nowrap;
@@ -173,7 +190,6 @@
     justify-content: center;
     box-shadow: 0 12px 30px -6px rgba(124,58,237,.35);
 }
-/* Anillo giratorio alrededor del logo */
 .inf-logo-box::before {
     content: "";
     position: absolute;
@@ -200,16 +216,27 @@
 
 .school-header-text { margin-top: 15px; margin-bottom: 24px; }
 
+/* ===== TITULO: completo, responsivo, sin recorte ===== */
 .inf-main-title {
     font-family: "Poppins", sans-serif;
-    font-size: 1.5rem;
+    /* tamano fluido: se achica solo para que quepa @colegiopedagogicocrear entero */
+    font-size: clamp(1.05rem, 6.2vw, 1.7rem);
     font-weight: 900;
     background: linear-gradient(120deg, var(--school-blue), var(--school-purple), var(--school-pink));
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin: 0 0 6px;
+    color: var(--school-blue); /* fallback si el navegador no soporta el gradiente */
+    margin: 0 0 8px;
     letter-spacing: -.5px;
+    line-height: 1.15;
+    width: 100%;
+    max-width: 100%;
+    /* deja respirar el descendente de la "g" para que no se corte por abajo */
+    padding-bottom: 4px;
+    white-space: nowrap;      /* una sola linea */
+    overflow: visible;
+    text-align: center;
 }
 .inf-tag {
     display: flex;
@@ -221,9 +248,12 @@
     color: var(--school-text-sub);
     font-weight: 600;
     margin: 0;
+    line-height: 1.4;
+    padding: 0 4px;
 }
 .inf-line {
     height: 2px; width: 20px;
+    flex-shrink: 0;
     background: linear-gradient(90deg, transparent, var(--school-primary));
     border-radius: 2px;
 }
@@ -282,7 +312,6 @@
     to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* Franja de color lateral segun posicion (nth-child) */
 .inf-link::before {
     content: "";
     position: absolute;
@@ -303,7 +332,6 @@
 }
 .inf-link:hover::before { width: 100%; opacity: .1; }
 
-/* Íconos con fondo de color por card */
 .inf-link-tag {
     width: 46px; height: 46px;
     display: flex;
@@ -321,9 +349,7 @@
 .inf-link:nth-child(4) .inf-link-tag { background: linear-gradient(135deg, var(--school-pink), #f472b6);  box-shadow: 0 6px 14px -3px rgba(236,72,153,.5); }
 .inf-link:nth-child(5) .inf-link-tag { background: linear-gradient(135deg, var(--school-purple), #a78bfa); box-shadow: 0 6px 14px -3px rgba(124,58,237,.5); }
 
-.inf-link:hover .inf-link-tag {
-    transform: rotate(-8deg) scale(1.12);
-}
+.inf-link:hover .inf-link-tag { transform: rotate(-8deg) scale(1.12); }
 
 .inf-link-text {
     flex: 1;
@@ -331,6 +357,7 @@
     display: flex;
     flex-direction: column;
     z-index: 1;
+    min-width: 0; /* evita que el texto empuje y desborde la card */
 }
 .inf-link-text strong {
     font-family: "Poppins", sans-serif;
@@ -354,7 +381,6 @@
 }
 .inf-link:hover .inf-arrow { transform: translateX(5px) scale(1.2); }
 
-/* Card destacada (Admisiones) con brillo animado */
 .highlight-link {
     background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
     border: 2px solid #fbbf24;
@@ -381,6 +407,7 @@
     justify-content: center;
     gap: 12px;
     margin: 26px 0 14px;
+    flex-wrap: wrap;
 }
 .inf-social {
     padding: 9px 16px;
@@ -410,3 +437,12 @@
 }
 
 .inf-noise { display: none; }
+
+/* ============ AJUSTE PANTALLAS PEQUENAS ============ */
+@media (max-width: 380px) {
+    .inf-card { padding: 32px 16px 24px; border-radius: 28px; }
+    .inf-main-title { font-size: clamp(.95rem, 6.5vw, 1.4rem); }
+    .joy-badge { font-size: .56rem; padding: 5px 12px; }
+    .inf-link { padding: 14px 14px; gap: 12px; }
+    .inf-link-tag { width: 42px; height: 42px; }
+}
